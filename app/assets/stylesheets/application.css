@@ -48,8 +48,11 @@ table#movies th, table#movies td {
   padding: 4px;
   text-align: left;
 }
-#notice #warning {
-  background: rosybrown;
+#notice, #warning {
+  color: green; 
+  text-align:center;
+  font-weight: bold;
+  background: #99FFCC;
   margin: 1em 0;
   padding: 4px;
 }
