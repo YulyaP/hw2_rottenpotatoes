@@ -7,9 +7,19 @@ class MoviesController < ApplicationController
   end
 
   def index
+    if(params.has_key?(:ratings) || params.has_key?(:sort_by))
+      session[:ratings] = params[:ratings]
+      session[:sort_by] = params[:sort_by]
+    elsif (session.has_key?(:ratings) || session.has_key?(:sort_by))
+       flash.keep
+       params[:ratings] = session[:ratings]
+       params[:sort_by] = session[:sort_by]
+       redirect_to movies_path(params)
+    end
+    
     @all_ratings = Movie.get_ratings
     @movies = Movie
-
+  
     if(params.has_key?(:ratings))
       @ratings = params[:ratings]
       @movies = @movies.where(["rating IN (?)",@ratings.keys])
