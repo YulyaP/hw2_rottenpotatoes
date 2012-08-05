@@ -15,6 +15,7 @@ class MoviesController < ApplicationController
        params[:ratings] = session[:ratings]
        params[:sort_by] = session[:sort_by]
        redirect_to movies_path(params)
+       return
     end
     
     @all_ratings = Movie.get_ratings
